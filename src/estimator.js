@@ -1,70 +1,38 @@
-class HelperEstimator {
-  constructor({ periodType, timeToElapse, reportedCases }, impactFactor) {
-    this.periodType = periodType;
-    this.timeToElapse = timeToElapse;
-    this.reportedCases = reportedCases;
-    this.impactFactor = impactFactor;
-  }
-
-  computeDuration() {
-    let period;
-    switch (this.periodType) {
-      case 'weeks':
-        period = this.timeToElapse * 7;
-        break;
-      case 'months':
-        period = this.timeToElapse * 30;
-        break;
-      default:
-        period = this.timeToElapse;
-    }
-    return period;
-  }
-
-  powerFactor() {
-    return Math.floor(this.computeDuration() / 3);
-  }
-
-  currentlyInfected() {
-    return this.reportedCases * this.impactFactor;
-  }
-
-  infectionByRequestedTime() {
-    const factor = this.powerFactor();
-    return this.currentlyInfected() * 2 ** factor;
+function periodEstimator(period, time) {
+  switch (period) {
+    case 'weeks':
+      return Math.trunc((time * 7) / 3);
+    case 'months':
+      return Math.trunc((time * 30) / 3);
+    default:
+      return Math.trunc(time / 3);
   }
 }
 
-const impactCases = (data) => {
-  const infectionsByRequestedTime = new HelperEstimator(
-    data,
-    10
-  ).infectionByRequestedTime();
+const impact = ({ reportedCases, periodType, timeToElapse }) => {
+  const currentlyInfected = reportedCases * 10;
 
-  const currentlyInfected = new HelperEstimator(data, 10).currentlyInfected();
-
+  const infectionsByRequestedTime =
+    currentlyInfected * 2 ** periodEstimator(periodType, timeToElapse);
   return {
-    infectionsByRequestedTime,
-    currentlyInfected
+    currentlyInfected,
+    infectionsByRequestedTime
   };
 };
-
-const severeImpactCases = (data) => {
-  const infectionsByRequestedTime = new HelperEstimator(
-    data,
-    50
-  ).infectionByRequestedTime();
-  const currentlyInfected = new HelperEstimator(data, 50).currentlyInfected();
+const severeImpact = ({ reportedCases, periodType, timeToElapse }) => {
+  const currentlyInfected = reportedCases * 50;
+  const infectionsByRequestedTime =
+    currentlyInfected * 2 ** periodEstimator(periodType, timeToElapse);
   return {
-    infectionsByRequestedTime,
-    currentlyInfected
+    currentlyInfected,
+    infectionsByRequestedTime
   };
 };
 
 const covid19ImpactEstimator = (data) => ({
   data,
-  impact: impactCases,
-  severeImpact: severeImpactCases
+  impact,
+  severeImpact
 });
 
 export default covid19ImpactEstimator;
