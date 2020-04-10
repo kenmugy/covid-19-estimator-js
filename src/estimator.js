@@ -30,8 +30,8 @@ const impact = ({
   const currentlyInfected = reportedCases * 10;
   const infectionsByRequestedTime = periodEstimator(periodType, timeToElapse, currentlyInfected);
   const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
-  const hospitalBedsByRequestedTime = Math.trunc(severeCasesByRequestedTime
-    - beds(totalHospitalBeds));
+  const hospitalBedsByRequestedTime = Math.trunc(beds(totalHospitalBeds)
+  - severeCasesByRequestedTime);
   const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
   const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
   //   const dollarsInFlight = Math.trunc((infectionsByRequestedTime
@@ -52,8 +52,8 @@ const severeImpact = ({
   const currentlyInfected = reportedCases * 50;
   const infectionsByRequestedTime = periodEstimator(periodType, timeToElapse, currentlyInfected);
   const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
-  const hospitalBedsByRequestedTime = Math.trunc(severeCasesByRequestedTime
-    - beds(totalHospitalBeds));
+  const hospitalBedsByRequestedTime = Math.trunc(beds(totalHospitalBeds)
+  - severeCasesByRequestedTime);
   const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
   const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
   //   const dollarsInFlight = Math.trunc((infectionsByRequestedTime
