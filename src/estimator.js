@@ -1,19 +1,18 @@
-function periodEstimator(period, time) {
+function periodEstimator(period, time, current) {
   switch (period) {
     case 'weeks':
-      return Math.trunc((time * 7) / 3);
+      return current * 2 ** Math.trunc((time * 7) / 3);
     case 'months':
-      return Math.trunc((time * 30) / 3);
+      return current * 2 ** Math.trunc((time * 30) / 3);
     default:
-      return Math.trunc(time / 3);
+      return current * 2 ** Math.trunc(time / 3);
   }
 }
 
 const impact = ({ reportedCases, periodType, timeToElapse }) => {
   const currentlyInfected = reportedCases * 10;
 
-  const infectionsByRequestedTime = currentlyInfected
-  * 2 ** periodEstimator(periodType, timeToElapse);
+  const infectionsByRequestedTime = periodEstimator(periodType, timeToElapse, currentlyInfected);
   return {
     currentlyInfected,
     infectionsByRequestedTime
@@ -21,8 +20,7 @@ const impact = ({ reportedCases, periodType, timeToElapse }) => {
 };
 const severeImpact = ({ reportedCases, periodType, timeToElapse }) => {
   const currentlyInfected = reportedCases * 50;
-  const infectionsByRequestedTime = currentlyInfected
-  * 2 ** periodEstimator(periodType, timeToElapse);
+  const infectionsByRequestedTime = periodEstimator(periodType, timeToElapse, currentlyInfected);
   return {
     currentlyInfected,
     infectionsByRequestedTime
