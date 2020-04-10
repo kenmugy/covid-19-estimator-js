@@ -1,12 +1,16 @@
 function periodEstimator(period, time) {
+  let Perrio;
   switch (period) {
     case 'weeks':
-      return Math.trunc((time * 7) / 3);
+      Perrio = Math.trunc((time * 7) / 3);
+      break;
     case 'months':
-      return Math.trunc((time * 30) / 3);
+      Perrio = Math.trunc((time * 30) / 3);
+      break;
     default:
-      return Math.trunc(time / 3);
+      Perrio = Math.trunc((time) / 3);
   }
+  return Perrio;
 }
 
 const impact = ({ reportedCases, periodType, timeToElapse }) => {
