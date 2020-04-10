@@ -4,11 +4,11 @@ const covid19ImpactEstimator = (data) => {
   const periodEstimator = (period, currentlyInfected, time) => {
     switch (period) {
       case 'weeks':
-        return currentlyInfected * time * 2 ** 2;
+        return currentlyInfected * Math.trunc((time * 7) / 3);
       case 'months':
-        return currentlyInfected * time * 2 ** 10;
+        return currentlyInfected * Math.trunc((time * 30) / 3);
       default:
-        return currentlyInfected * time;
+        return currentlyInfected * Math.trunc(time / 3);
     }
   };
   return {
