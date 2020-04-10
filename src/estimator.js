@@ -1,11 +1,5 @@
 const covid19ImpactEstimator = (data) => {
-  const {
-    reportedCases,
-    periodType,
-    timeToElapse,
-    totalHospitalBeds,
-    region
-  } = data;
+  const { reportedCases, periodType, timeToElapse } = data;
 
   const periodEstimator = (period, currentlyInfected, time) => {
     switch (period) {
