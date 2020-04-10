@@ -12,8 +12,8 @@ function periodEstimator(period, time) {
 const impact = ({ reportedCases, periodType, timeToElapse }) => {
   const currentlyInfected = reportedCases * 10;
 
-  const infectionsByRequestedTime =
-    currentlyInfected * 2 ** periodEstimator(periodType, timeToElapse);
+  const infectionsByRequestedTime = currentlyInfected
+  * 2 ** periodEstimator(periodType, timeToElapse);
   return {
     currentlyInfected,
     infectionsByRequestedTime
@@ -21,8 +21,8 @@ const impact = ({ reportedCases, periodType, timeToElapse }) => {
 };
 const severeImpact = ({ reportedCases, periodType, timeToElapse }) => {
   const currentlyInfected = reportedCases * 50;
-  const infectionsByRequestedTime =
-    currentlyInfected * 2 ** periodEstimator(periodType, timeToElapse);
+  const infectionsByRequestedTime = currentlyInfected
+  * 2 ** periodEstimator(periodType, timeToElapse);
   return {
     currentlyInfected,
     infectionsByRequestedTime
