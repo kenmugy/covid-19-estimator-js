@@ -9,6 +9,17 @@ function periodEstimator(period, time, current) {
   }
 }
 
+function dollarEstimator(period, time) {
+  switch (period) {
+    case 'weeks':
+      return time * 7;
+    case 'months':
+      return time * 30;
+    default:
+      return time;
+  }
+}
+
 const impact = ({
   reportedCases, periodType, timeToElapse, totalHospitalBeds, region
 }) => {
@@ -19,7 +30,7 @@ const impact = ({
   const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
   const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
   const dollarsInFlight = Math.trunc((infectionsByRequestedTime
-        * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD) * timeToElapse);
+        * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD) * dollarEstimator());
   return {
     currentlyInfected,
     infectionsByRequestedTime,
@@ -40,7 +51,7 @@ const severeImpact = ({
   const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
   const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
   const dollarsInFlight = Math.trunc((infectionsByRequestedTime
-        * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD) * timeToElapse);
+        * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD) * dollarEstimator());
   return {
     currentlyInfected,
     infectionsByRequestedTime,
