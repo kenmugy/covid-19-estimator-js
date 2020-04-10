@@ -17,8 +17,8 @@ const covid19ImpactEstimator = (data) => {
       currentlyInfected: reportedCases * 10,
       infectionsByRequestedTime() {
         return (
-          this.currentlyInfected *
-          2 ** periodEstimator(periodType, timeToElapse)
+          this.currentlyInfected
+          * 2 ** periodEstimator(periodType, timeToElapse)
         );
       }
     },
@@ -26,8 +26,8 @@ const covid19ImpactEstimator = (data) => {
       currentlyInfected: reportedCases * 50,
       infectionsByRequestedTime() {
         return (
-          this.currentlyInfected *
-          2 ** periodEstimator(periodType, timeToElapse)
+          this.currentlyInfected
+          * 2 ** periodEstimator(periodType, timeToElapse)
         );
       }
     }
