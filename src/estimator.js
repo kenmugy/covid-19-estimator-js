@@ -9,21 +9,46 @@ function periodEstimator(period, time, current) {
   }
 }
 
-const impact = ({ reportedCases, periodType, timeToElapse }) => {
+const impact = ({
+  reportedCases, periodType, timeToElapse, totalHospitalBeds, region
+}) => {
   const currentlyInfected = reportedCases * 10;
-
   const infectionsByRequestedTime = periodEstimator(periodType, timeToElapse, currentlyInfected);
+  const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
+  const hospitalBedsByRequestedTime = Math.trunc(severeCasesByRequestedTime - totalHospitalBeds);
+  const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
+  const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
+  const dollarsInFlight = Math.trunc((infectionsByRequestedTime
+        * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD) * timeToElapse);
   return {
     currentlyInfected,
-    infectionsByRequestedTime
+    infectionsByRequestedTime,
+    severeCasesByRequestedTime,
+    hospitalBedsByRequestedTime,
+    casesForICUByRequestedTime,
+    casesForVentilatorsByRequestedTime,
+    dollarsInFlight
   };
 };
-const severeImpact = ({ reportedCases, periodType, timeToElapse }) => {
+const severeImpact = ({
+  reportedCases, periodType, timeToElapse, totalHospitalBeds, region
+}) => {
   const currentlyInfected = reportedCases * 50;
   const infectionsByRequestedTime = periodEstimator(periodType, timeToElapse, currentlyInfected);
+  const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
+  const hospitalBedsByRequestedTime = Math.trunc(severeCasesByRequestedTime - totalHospitalBeds);
+  const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
+  const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
+  const dollarsInFlight = Math.trunc((infectionsByRequestedTime
+        * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD) * timeToElapse);
   return {
     currentlyInfected,
-    infectionsByRequestedTime
+    infectionsByRequestedTime,
+    severeCasesByRequestedTime,
+    hospitalBedsByRequestedTime,
+    casesForICUByRequestedTime,
+    casesForVentilatorsByRequestedTime,
+    dollarsInFlight
   };
 };
 
