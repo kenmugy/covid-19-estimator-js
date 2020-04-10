@@ -1,0 +1,66 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  color: rgb(255, 255, 255);
+  margin-bottom: 25px;
+  box-shadow: 0px 2px 4px black;
+  padding: 20px;
+  text-align: center;
+  background-image: linear-gradient(to right, rgb(255, 0, 98), rgb(21, 255, 0));
+}
+
+section {
+  padding: 0 8%;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  justify-self: center;
+  flex: 50%;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 3px;
+  max-width: 600px;
+}
+.input-field {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.input-field label {
+  align-self: start;
+  padding-bottom: 5px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  font-family: sans-serif;
+}
+
+.input-field input,
+select {
+  border: 1px solid green;
+  padding: 7px;
+  border-radius: 3px;
+}
+
+.input-field button {
+  color: green;
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid green;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.input-field button:hover {
+  color: #fff;
+  background: green;
+}
