@@ -3,13 +3,13 @@ const covid19ImpactEstimator = (data) => {
 
   function periodEstimator(period, currentlyInfected, time) {
     if (period === 'weeks') {
-      return currentlyInfected * Math.trunc((time * 7) / 3);
+      return currentlyInfected * 2 ** Math.trunc((time * 7) / 3);
     }
     if (period === 'months') {
-      return currentlyInfected * Math.trunc((time * 30) / 3);
+      return currentlyInfected * 2 ** Math.trunc((time * 30) / 3);
     }
     if (period === 'days') {
-      return currentlyInfected * Math.trunc(time / 3);
+      return currentlyInfected * 2 ** Math.trunc(time / 3);
     }
     return 0;
   }
