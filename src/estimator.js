@@ -9,7 +9,7 @@ function periodEstimator(period, time) {
   }
 }
 
-const impactResults = ({ reportedCases, periodType, timeToElapse }) => {
+const impact = ({ reportedCases, periodType, timeToElapse }) => {
   const currentlyInfected = reportedCases * 10;
 
   const infectionsByRequestedTime = currentlyInfected
@@ -19,7 +19,7 @@ const impactResults = ({ reportedCases, periodType, timeToElapse }) => {
     infectionsByRequestedTime
   };
 };
-const severeResults = ({ reportedCases, periodType, timeToElapse }) => {
+const severeImpact = ({ reportedCases, periodType, timeToElapse }) => {
   const currentlyInfected = reportedCases * 50;
   const infectionsByRequestedTime = currentlyInfected
   * 2 ** periodEstimator(periodType, timeToElapse);
@@ -31,8 +31,8 @@ const severeResults = ({ reportedCases, periodType, timeToElapse }) => {
 
 const covid19ImpactEstimator = (data) => ({
   data,
-  impact: impactResults,
-  severeImpact: severeResults
+  impact,
+  severeImpact
 });
 
 export default covid19ImpactEstimator;
