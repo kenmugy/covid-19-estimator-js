@@ -1,7 +1,7 @@
 const covid19ImpactEstimator = (data) => {
   const { reportedCases, periodType, timeToElapse } = data;
 
-  const periodEstimator = (period, currentlyInfected, time) => {
+  function periodEstimator(period, currentlyInfected, time) {
     if (period === 'weeks') {
       return currentlyInfected * Math.trunc((time * 7) / 3);
     }
@@ -11,7 +11,8 @@ const covid19ImpactEstimator = (data) => {
     if (period === 'days') {
       return currentlyInfected * Math.trunc(time / 3);
     }
-  };
+    return 0;
+  }
   return {
     data,
     impact: {
