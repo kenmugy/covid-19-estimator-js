@@ -2,11 +2,17 @@
 
 // const express = require('express');
 
-
 // const app = express();
 
 // app.use(express.json());
 
+// //middleware
+// const middlefunc = (req,res,next) => {
+//     res.send(``)
+//     next()
+// }
+
+// app.use(middlefunc)
 
 // const PORT = process.env.PORT || '4400';
 // const logs = []
