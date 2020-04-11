@@ -7,10 +7,10 @@
 // app.use(express.json());
 
 // //middleware
-const middlefunc = (req,res,next) => {
-    res.send(`${req.get('host')}${req.originalUrl}`)
-    next()
-}
+// const middlefunc = (req,res,next) => {
+//     res.send(`${req.get('host')}${req.originalUrl}`)
+//     next()
+// }
 
 // app.use(middlefunc)
 
