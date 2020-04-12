@@ -41,7 +41,6 @@
         <div class="input-field">
           <label for="periodType">Period Type</label>
           <select name="" id="periodType" data-period-type>
-            <!-- <option disabled value>choose period length</option> -->
             <option value="days">days</option>
             <option value="weeks">weeks</option>
             <option value="months">months</option>
@@ -53,9 +52,8 @@
       </form>
     </section>
     <script type="module" src="./src/estimator.js"></script>
-    <script type="text/javascript">
-      import covid19ImpactEstimator from './estimator';
-
+    <script type="module">
+      import covid19ImpactEstimator from './src/estimator.js';
       function getFromForm() {
         const population = +document.querySelector('[data-population]').value;
 
